@@ -18,7 +18,7 @@ else:
     VisdomExceptionBase = ConnectionError
 
 
-def save_images(webpage, visuals, image_path, aspect_ratio=1.0, width=256, use_wandb=False):
+def save_images(webpage, visuals, image_path, aspect_ratio=1.0, width=256):
     """Save images to the disk.
 
     Parameters:
@@ -45,11 +45,7 @@ def save_images(webpage, visuals, image_path, aspect_ratio=1.0, width=256, use_w
         ims.append(image_name)
         txts.append(label)
         links.append(image_name)
-        if use_wandb:
-            ims_dict[label] = wandb.Image(im)
-    webpage.add_images(ims, txts, links, width=width)
-    if use_wandb:
-        wandb.log(ims_dict)
+
 
 
 class Visualizer():
